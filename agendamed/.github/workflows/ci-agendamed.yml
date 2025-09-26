@@ -21,7 +21,8 @@ jobs:
 
       - name: Build com Maven
         working-directory: ./agendamed  # caminho do pom.xml
-        run: mvn -B clean package
+        run: mvn -B clean package --file agendamed/pom.xml
+
 
   build-and-push-docker:
     runs-on: ubuntu-latest
