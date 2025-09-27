@@ -64,9 +64,8 @@ jobs:
           context: ./agendamed
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}-agendamed:latest
-            ghcr.io/${{ github.repository }}-agendamed:${{ github.sha }}
-
+            ghcr.io/matteoziinn/agendamed:latest
+            ghcr.io/matteoziinn/agendamed:${{ github.sha }}
 
 
   deploy-dev:
