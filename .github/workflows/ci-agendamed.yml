@@ -97,3 +97,4 @@ jobs:
       # Simula deploy sem travar
       - name: Simular deploy Prod
         run: echo "Deploy em Production concluído (imagem agendamed:latest pronta)"
+          
