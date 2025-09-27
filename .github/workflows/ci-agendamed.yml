@@ -8,32 +8,33 @@ on:
 
 jobs:
   build-and-test:
-    name:  Build & Test com Maven
+    name: 🏗️ Build & Test com Maven
     runs-on: ubuntu-latest
 
     defaults:
       run:
-        working-directory: ./agendamed/agendamed
+        working-directory: agendamed
 
     steps:
-      - name:  Checkout do repositório
+      - name: 📥 Checkout do repositório
         uses: actions/checkout@v4
 
-      - name:  Configurar JDK 17
+      - name: ☕ Configurar JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name:  Cache do Maven
+      - name: 📦 Cache do Maven
         uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      - name:  Build e Testes com Maven
+      - name: 🧪 Build e Testes com Maven
         run: mvn -B verify
+
 
   docker-build:
     name:  Build & Push Docker Image
@@ -51,8 +52,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🐳 Build da imagem Docker
-        run: docker build ./agendamed/agendamed -t agendamed:latest
+      - name: 🐳 Build e Push da imagem Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: ./agendamed
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/agendamed:latest
+            ghcr.io/${{ github.repository }}/agendamed:${{ github.sha }}
+
 
 
   deploy-dev:
