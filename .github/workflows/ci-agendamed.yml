@@ -12,24 +12,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout do repositório
       - name: 📥 Checkout do repositório
         uses: actions/checkout@v4
 
-      # 2️⃣ Debug opcional do workspace
       - name: 🔍 Verificar diretório
         run: |
           pwd
           ls -R
 
-      # 3️⃣ Configurar Java 17
       - name: ☕ Configurar JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 4️⃣ Cache do Maven
       - name: 📦 Cache do Maven
         uses: actions/cache@v4
         with:
@@ -37,7 +33,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      # 5️⃣ Build e testes Maven
       - name: 🧪 Build e Testes Maven
         working-directory: agendamed
         run: mvn -B verify
@@ -51,11 +46,9 @@ jobs:
       - name: 📥 Checkout do repositório
         uses: actions/checkout@v4
 
-      # Build Docker localmente
       - name: Build Docker image localmente
         run: docker build -t agendamed:latest ./agendamed
 
-      # Salvar imagem Docker como arquivo tar
       - name: Salvar imagem Docker como arquivo
         run: docker save agendamed:latest -o agendamed.tar
 
@@ -64,7 +57,6 @@ jobs:
         with:
           name: agendamed-image
           path: agendamed.tar
-
 
   deploy-dev:
     name: Deploy em Development
@@ -79,14 +71,12 @@ jobs:
           name: agendamed-image
           path: .
 
-
-      # Carregar imagem Docker no runner
       - name: Carregar imagem Docker
         run: docker load -i agendamed.tar
 
-      # Rodar container para simular deploy
-      - name: Rodar container
-        run: docker run --rm agendamed:latest
+      # Simula deploy sem travar
+      - name: Simular deploy Dev
+        run: echo "Deploy em Development concluído (imagem agendamed:latest pronta)"
 
   deploy-prod:
     name: Deploy em Production
@@ -95,17 +85,15 @@ jobs:
     environment:
       name: production
     steps:
-      # Baixar artefato da imagem Docker
       - name: Baixar artefato da imagem Docker
         uses: actions/download-artifact@v4
         with:
           name: agendamed-image
           path: .
 
-      # Carregar imagem Docker no runner
       - name: Carregar imagem Docker
         run: docker load -i agendamed.tar
 
-      # Rodar container para simular deploy
-      - name: Rodar container
-        run: docker run --rm agendamed:latest
+      # Simula deploy sem travar
+      - name: Simular deploy Prod
+        run: echo "Deploy em Production concluído (imagem agendamed:latest pronta)"
