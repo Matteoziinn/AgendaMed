@@ -59,12 +59,12 @@ jobs:
       - name: Salvar imagem Docker como arquivo
         run: docker save agendamed:latest -o agendamed.tar
 
-      # Upload da imagem como artefato
       - name: Upload Docker image como artefato
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: agendamed-image
           path: agendamed.tar
+
 
   deploy-dev:
     name: Deploy em Development
@@ -73,12 +73,12 @@ jobs:
     environment:
       name: development
     steps:
-      # Baixar artefato da imagem Docker
       - name: Baixar artefato da imagem Docker
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: agendamed-image
           path: .
+
 
       # Carregar imagem Docker no runner
       - name: Carregar imagem Docker
@@ -97,7 +97,7 @@ jobs:
     steps:
       # Baixar artefato da imagem Docker
       - name: Baixar artefato da imagem Docker
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: agendamed-image
           path: .
