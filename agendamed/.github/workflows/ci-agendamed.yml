@@ -20,8 +20,8 @@ jobs:
           distribution: 'temurin'
 
       - name: Build com Maven
-        working-directory: ./agendamed 
         run: mvn -B clean package --file agendamed/agendamed/pom.xml
+
 
 
   build-and-push-docker:
