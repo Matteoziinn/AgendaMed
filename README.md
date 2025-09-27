@@ -1,4 +1,4 @@
-# AgendaMed# AgendaMed
+#AgendaMed# 
 
 **Descrição:**  
 AgendaMed é um projeto Spring Boot que gerencia agendamentos médicos, pacientes e informações relacionadas. Ele utiliza **Spring Web**, **Spring Data JPA** e **H2 Database** para armazenamento em memória. Possui configuração para **CI/CD** via GitHub Actions e pode ser executado com Docker.
