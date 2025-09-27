@@ -64,8 +64,10 @@ jobs:
           context: ./agendamed
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/agendamed:latest
-            ghcr.io/${{ github.repository }}/agendamed:${{ github.sha }}
+            ghcr.io/${{ github.repository }}-agendamed:latest
+            ghcr.io/${{ github.repository }}-agendamed:${{ github.sha }}
+
+
 
   deploy-dev:
     name: Deploy em Development
