@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build com Maven
-        run: mvn -B clean verify --file agendamed/agendamed/pom.xml
+        run: mvn -B clean verify --file agendamed/pom.xml
 
 
   build-and-push-docker:
@@ -44,7 +44,7 @@ jobs:
       - name: Build e push Docker
         uses: docker/build-push-action@v5
         with:
-          context: ./agendamed  # pasta onde está seu Dockerfile
+          context: ./agendamed  
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
