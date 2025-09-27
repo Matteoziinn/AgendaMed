@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - AgendaMed
+name: CI/CD Pipeline - AgendaMed (Docker sem push)
 
 on:
   push:
@@ -43,7 +43,7 @@ jobs:
         run: mvn -B verify
 
   docker-build:
-    name: 🐳 Build & Push Docker Image
+    name: 🐳 Build Docker Image
     runs-on: ubuntu-latest
     needs: build-and-test
 
@@ -51,22 +51,14 @@ jobs:
       - name: 📥 Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Login no GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      # Build Docker localmente, sem push
+      - name: Build Docker image localmente
+        run: |
+          docker build -t agendamed:latest ./agendamed
 
-      - name: Build e Push da imagem Docker
-        uses: docker/build-push-action@v5
-        with:
-          context: ./agendamed
-          push: true
-          tags: |
-            ghcr.io/matteoziinn/agendamed:latest
-            ghcr.io/matteoziinn/agendamed:${{ github.sha }}
-
+      # Listar imagens para confirmar build
+      - name: Listar imagens Docker
+        run: docker images
 
   deploy-dev:
     name: Deploy em Development
@@ -75,7 +67,8 @@ jobs:
     environment:
       name: development
     steps:
-      - run: echo "Simulando deploy no ambiente de Desenvolvimento..."
+      - run: echo "Simulando deploy com a imagem Docker local no ambiente de Desenvolvimento..."
+      - run: docker run --rm agendamed:latest
 
   deploy-prod:
     name: Deploy em Production
@@ -84,4 +77,5 @@ jobs:
     environment:
       name: production
     steps:
-      - run: echo "Simulando deploy no ambiente de Produção..."
+      - run: echo "Simulando deploy com a imagem Docker local no ambiente de Produção..."
+      - run: docker run --rm agendamed:latest
