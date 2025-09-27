@@ -51,11 +51,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name:  Build da imagem Docker
-        run: |
-          docker build ./agendamed/agendamed -t agendamed:latest
-          docker tag agendamed:latest ghcr.io/${{ github.repository }}/agendamed:latest
-          docker push ghcr.io/${{ github.repository }}/agendamed:latest
+      - name: 🐳 Build da imagem Docker
+        run: docker build ./agendamed/agendamed -t agendamed:latest
+
 
   deploy-dev:
     name:  Deploy em Development
