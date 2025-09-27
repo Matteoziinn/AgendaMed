@@ -33,7 +33,7 @@ AgendaMed é um projeto Spring Boot que gerencia agendamentos médicos, paciente
 
 3. Acesse a aplicação no navegador:
    ```
-   http://localhost:8080
+   http://localhost:8080/h2-console
    ```
 
 ---
