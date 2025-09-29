@@ -85,7 +85,7 @@ O projeto possui um pipeline configurado que:
 3. Cria imagem Docker
 4. Faz deploy automático
 
-Arquivo de configuração: `.github/workflows/ci-cd.yml`
+Arquivo de configuração: `.github/workflows/ci-agendamed.yml`
 
 ---
 
