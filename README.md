@@ -91,7 +91,6 @@ Arquivo de configuração: `.github/workflows/ci-cd.yml`
 
 ## Membros do Projeto
 
-- Nathalya Alves de Souza  
 - Matteo Souza Caetano  
 - Adison de Oliveira  
 - Matheus Borges
