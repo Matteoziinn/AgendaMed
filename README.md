@@ -97,7 +97,3 @@ Arquivo de configuração: `.github/workflows/ci-cd.yml`
 
 ---
 
-## Contato
-
-- Desenvolvedora: Nathalya Alves de Souza  
-- Email: [seuemail@exemplo.com](mailto:seuemail@exemplo.com)
