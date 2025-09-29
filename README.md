@@ -82,8 +82,8 @@ O projeto possui um pipeline configurado que:
 
 1. Builda a aplicação com Maven
 2. Executa testes
-3. (Opcional) Cria imagem Docker
-4. (Opcional) Faz deploy automático
+3. Cria imagem Docker
+4. Faz deploy automático
 
 Arquivo de configuração: `.github/workflows/ci-cd.yml`
 
