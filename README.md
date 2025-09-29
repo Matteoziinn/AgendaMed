@@ -13,7 +13,7 @@ AgendaMed é um projeto Spring Boot que gerencia agendamentos médicos, paciente
 - H2 Database
 - Maven
 - GitHub Actions (CI/CD)
-- Docker (opcional)
+- Docker 
 
 ---
 
